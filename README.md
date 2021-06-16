@@ -22,14 +22,16 @@ python3 compiler.py <nome_do_arquivo.zl>
 
 
 ```c
-int main {
-    output("Hello world");
+int main() {
+
+	string str = "Hello World";
+    output(str);
 }
 ``` 
 
 
 ```c
-int main {
+int main() {
     
     int a = 2;
     int b = 12;
@@ -41,7 +43,7 @@ int main {
 }
 ``` 
 ```c
-int main {
+int main() {
 
     for (int i=0; i<10;i++;){
         output(i);
@@ -63,8 +65,6 @@ int  main(){
 
     c= sum(a, b);
 }
-
-
 ```
 
 ```c
@@ -77,8 +77,6 @@ int  main(){
     
     print_number(2);
 }
-
-
 ```
 
 ---
