@@ -487,7 +487,7 @@ class Tokenizer:
                 identifier += self.origin[self.position]
                 self.position += 1
             self.position -= 1
-            if (identifier == "print"):
+            if (identifier == "output"):
                 self.actual = Token("PRINT", None)
             elif (identifier == "input"):
                 self.actual = Token("INPUT", None)
@@ -503,7 +503,7 @@ class Tokenizer:
                 self.actual = Token("DECLARATION", identifier)
             elif (identifier == "true" or identifier == "false"):
                 self.actual = Token("BOOL", identifier)
-            elif (identifier == "return"):
+            elif (identifier == "exit"):
                 self.actual = Token("RETURN", None)
             else:
                 self.actual = Token("IDENTIFIER", identifier)

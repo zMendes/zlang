@@ -7,7 +7,7 @@ Linguagem criada para o projeto final da matéria de Lógica da Computação. Fo
 ---
 ### Características
 
-A sintaxe da linguagem é baseada em C, com algum dos comandos específicos de python como ```print``` e ```input```. Há a presença de loops e condições mas não conta com a implementação de funções. É uma linguagem de tipagem forte que representa o que eu acho que é uma linguagem ideal (*basicamente C*).
+A linguagem é baseada em C, com algum dos comandos específicos de python como ```print``` e ```input```. É uma linguagem de tipagem forte que representa o que eu acho que é uma linguagem ideal. Consistente e com comandos mais simples e intuitivos que as demais linguagens. É feita para pessoas que não tem tanta familiaridade com programação começarem a entender conceitos mais simples, não possui listas, apenas ```string```, ```int``` e ```bool```. 
 
 ---
 ### Uso
@@ -20,62 +20,95 @@ python3 compiler.py <nome_do_arquivo.zl>
 ---
 ### Exemplos 
 
+
 ```c
 int main {
-
-    print("Hello world");
-    
+    output("Hello world");
 }
 ``` 
 
 
 ```c
 int main {
-
+    
     int a = 2;
     int b = 12;
     if (a*b > 10) {
-        print(a*b);
+        output(a*b);
     }
     else 
-        printf("Menos que 10");
+        output("Menos que 10");
 }
 ``` 
-
 ```c
 int main {
 
     for (int i=0; i<10;i++;){
-        print(i);
+        output(i);
     }
 }
 ``` 
+
+```c
+
+int sum(int a, int b){
+    exit a+b;
+}
+
+int  main(){
+    
+    int a =2;
+    int b = 5;
+    int c;
+
+    c= sum(a, b);
+}
+
+
+```
+
+```c
+
+void print_number(int a){
+    output(a);
+}
+
+int  main(){
+    
+    print_number(2);
+}
+
+
+```
+
 ---
+
+
 
 #### EBNF
 
 ```
+FUNCDEFBLOKC = {λ TYPE, IDENTIFIER, "(", { TYPE, IDENTIFIER, "," }, ")", COMMAND } ;
 BLOCK = "{", { COMMAND }, "}" ;  
-COMMAND = ( λ | DECLARATION | ASSIGNMENT | PRINT | BLOCK | CONDITION | WHILE | FOR | INCREMENT | DECREMENT ), ";" ;  
+COMMAND = ( λ | DECLARATION | ASSIGNMENT | PRINT | BLOCK | CONDITION | WHILE | FOR | INCREMENT | DECREMENT | "exit", OREXP | IDENTIFIER, "(", { OREXP, "," }, ")" ), ";" ;  
 ASSIGNMENT = TYPE, IDENTIFIER, "=", ( OREXP | STRING | CHAR | BOOLEAN) ;
 DECLARATION = TYPE, IDENTIFIER, { "=", ( OREXP | STRING | CHAR ) } ;  
 CONDITION = "IF","(", OREXP, ")", COMMAND, { "ELSE", COMMAND } ;  
 WHILE = "while", "(", OREXP, ")", COMMAND ;  
 FOR = "for", "(", ASSIGNMENT | DECLARATION,";",CONDITION,";", ASSIGNMENT,";,")", COMMAND ;  
-PRINT = "print", "(", (OREXP | STRING | CHAR), ")" ;  
+PRINT = "output", "(", (OREXP | STRING | CHAR), ")" ;  
 OREXP = ( ANDEXP, { "||", ANDEXP  } ;  
 ANDEXP = EQEXP, { "&&", EQEXP } ;  
 EQEXP = RELEXP, { ("=="), RELEXP } ;  
 RELEXP = EXPRESSION, { (">" | "<") ,EXPRESSION } ;  
 EXPRESSION = TERM, { ("+" | "-"), TERM } ;  
 TERM = FACTOR, { ("*" | "/"), FACTOR } ;  
-FACTOR = (("+" | "-", "!"), FACTOR) | NUMBER | "(", OREXP, ")" | 
+FACTOR = (("+" | "-", "!"), FACTOR) | NUMBER | "(", OREXP, ")" | IDENTIFIER, { "(", { OREXP, "," }, ")" }| "input", "(", ")" ;  
 INCREMENT = IDENTIFIER, "+", "+", ";" ;
-INCREMENT = IDENTIFIER, "-", "-", ";" ;
-IDENTIFIER | "input", "(", ")";  
+DECREMENT = IDENTIFIER, "-", "-", ";" ;
 IDENTIFIER = LETTER, { LETTER | DIGIT | "_" } ;  
 NUMBER = DIGIT, { DIGIT } ;  
-TYPE = ( "int" | "string" | "char", "bool" )  
+TYPE = ( "int" | "string" | "bool" )  
 LETTER = ( a | ... | z | A | ... | Z ) ;  
 DIGIT = ( 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 ) ;  
 STRING = "'", LETTER, {LETTER}, "'" ;  
@@ -83,8 +116,9 @@ CHAR = LETTER;
 BOOLEAN = "true" | "false";
 ```
 
+---
 
-### Diagrama Sintático
+#### Diagrama Sintático
 
 ![Diagrama.](https://i.imgur.com/jmyaEoA.png "Diagrama Sintático.")
 
